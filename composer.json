@@ -1,0 +1,42 @@
+{
+    "name": "minasyans/filament-menu",
+    "description": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Arthur",
+            "email": "artminasyanartwork@gmail.com",
+            "homepage": "https://github.com/Minasyans"
+        }
+    ],
+    "homepage": "https://github.com/minasyans/filament-menu",
+    "keywords": ["Laravel", "FilamentMenu"],
+    "require": {
+        "illuminate/support": "~7|~8",
+        "filament/filament": "^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~9.0",
+        "orchestra/testbench": "~5|~6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Minasyans\\FilamentMenu\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Minasyans\\FilamentMenu\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Minasyans\\FilamentMenu\\FilamentMenuServiceProvider"
+            ],
+            "aliases": {
+                "FilamentMenu": "Minasyans\\FilamentMenu\\Facades\\FilamentMenu"
+            }
+        }
+    }
+}
