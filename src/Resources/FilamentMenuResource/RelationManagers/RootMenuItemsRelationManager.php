@@ -15,7 +15,7 @@ class RootMenuItemsRelationManager extends HasManyRelationManager
 
     protected static ?string $recordTitleAttribute = 'menu_id';
 
-//    protected static string $view = 'filament-menu::filament.pages.menu-items';
+    protected static string $view = 'filament-menu::filament.pages.menu-items';
 
     protected static ?string $title = 'Menu items';
 
@@ -54,5 +54,11 @@ class RootMenuItemsRelationManager extends HasManyRelationManager
         $reflection = new \ReflectionClass($classname);
 
         return app($reflection->getName())::getName();
+    }
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['order'] = 1;
+        return $data;
     }
 }

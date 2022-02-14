@@ -86,12 +86,12 @@ class FilamentMenuItems extends Model
         return $this->data;
     }
 
-//    public function getFieldsAttribute()
-//    {
+    public function getFieldsAttribute()
+    {
 //        $fields = FilamentMenuBuilder::getFieldsFromMenuItemTypeClass($this->class);
 //        foreach ($fields as $field) {
 //            $field->resolve($this);
 //        }
 //        return $fields;
-//    }
+    }
 }

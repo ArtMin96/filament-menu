@@ -10,11 +10,11 @@ use Filament\Resources\Table;
 use Filament\Tables\Actions\IconButtonAction;
 use Filament\Tables\Columns\TextColumn;
 use Minasyans\FilamentMenu\Models\FilamentMenu;
-//use Minasyans\FilamentMenu\Pages\ViewMenu;
+use Minasyans\FilamentMenu\Pages\ViewMenu;
 use Minasyans\FilamentMenu\Resources\FilamentMenuResource\Pages\CreateMenu;
 use Minasyans\FilamentMenu\Resources\FilamentMenuResource\Pages\EditMenus;
 use Minasyans\FilamentMenu\Resources\FilamentMenuResource\Pages\ListMenus;
-use Minasyans\FilamentMenu\Resources\FilamentMenuResource\Pages\ViewMenu;
+//use Minasyans\FilamentMenu\Resources\FilamentMenuResource\Pages\ViewMenu;
 use Minasyans\FilamentMenu\Resources\FilamentMenuResource\RelationManagers\RootMenuItemsRelationManager;
 
 class FilamentMenuResource extends Resource
@@ -27,12 +27,15 @@ class FilamentMenuResource extends Resource
 
     protected static ?string $pluralLabel = 'Menus';
 
+    protected static ?string $recordTitleAttribute = 'name';
+
     public static function getPages(): array
     {
         return [
             'index' => ListMenus::route('/'),
             'create' => CreateMenu::route('/create'),
-            'view' => ViewMenu::route('/{record}'),
+//            'view' => ViewMenu::class,
+//            'view' => ViewMenu::route('/{record}'),
             'edit' => EditMenus::route('/{record}/edit'),
         ];
     }
@@ -40,7 +43,7 @@ class FilamentMenuResource extends Resource
     public static function table(Table $table): Table
     {
 //        dd(\Minasyans\FilamentMenu\Pages\ViewMenu::getSlug());
-//        dd(\Minasyans\FilamentMenu\Pages\ViewMenu::getUrl(['record' => 1]));
+//        dd(\Minasyans\FilamentMenu\Pages\ViewMenu::getUrl(['record' => 3]));
         return $table
             ->columns([
                 TextColumn::make('name')->sortable(),
@@ -48,8 +51,8 @@ class FilamentMenuResource extends Resource
             ])->defaultSort('name')->pushActions([
                 IconButtonAction::make('view')
                     ->label('View menu')
-//                    ->url(fn (FilamentMenu $record): string => url(ViewMenu::getUrl(['record' => $record])))
-                    ->url(fn (FilamentMenu $record): string => route('filament.resources.menus.view', $record))
+                    ->url(fn (FilamentMenu $record): string => url(ViewMenu::getUrl(['record' => $record])))
+//                    ->url(fn (FilamentMenu $record): string => route('filament.resources.menus.view', $record))
                     ->icon('heroicon-o-eye')
                     ->color('dark'),
 
