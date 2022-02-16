@@ -2,6 +2,9 @@
 
 namespace Minasyans\FilamentMenu\Http\Livewire;
 
+use Filament\Facades\Filament;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Livewire\Component;
 use Minasyans\FilamentMenu\Models\FilamentMenu;
 
@@ -9,31 +12,30 @@ class MenuItems extends Component
 {
     public FilamentMenu $menu;
 
-    public $menuItems = [];
+    public Collection $menuItems;
 
     protected $listeners = [
         'menuItemsByLocale',
     ];
 
-    public function menuItemsByLocale($locale)
+    public function menuItemsByLocale($locale): void
     {
-        $this->menuItems = $this->menu->formatForLocale($locale)['menuItems'];
+        $this->menuItems = $this->menu->formatForLocale($locale);
     }
 
     public function updateItemOrder($items)
     {
-        dd($items);
+        Filament::notify('success', 'Saved');
+//        dd('menu items', $items);
     }
 
     public function updateGroupOrder($group)
     {
-        dd($group);
+        Filament::notify('success', 'Group saved');
     }
 
-    public function render()
+    public function render(): View
     {
-        return view('filament-menu::livewire.menu-items', [
-            'menuItems' => $this->menuItems
-        ]);
+        return view('filament-menu::livewire.menu-items');
     }
 }

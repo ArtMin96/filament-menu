@@ -7,7 +7,9 @@
 
     <div class="flex items-center">
         @foreach(config('filament-menu.locales') as $key => $locale)
-            <div class="mx-2 cursor-pointer font-bold border-b-2 px-2 h-full flex items-center box-border" wire:click="changeLocale('{{ $key }}')">
+            <div class="mx-2 cursor-pointer font-bold px-2 h-full flex items-center @if($localeKey === $key) text-blue-400 border-b-4 border-indigo-500 @endif"
+                 wire:click="changeLocale('{{ $key }}')"
+            >
                 <span>{{ $locale }} ({{ $key }})</span>
             </div>
         @endforeach

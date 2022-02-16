@@ -15,19 +15,18 @@ class ViewMenu extends Page
 
     protected static ?string $title = 'View menu';
 
-    public FilamentMenu $record;
+    public ?FilamentMenu $record;
 
     protected static function shouldRegisterNavigation(): bool
     {
         return false;
     }
 
-
-
     protected function getActions(): array | View | null
     {
         return [
-            ButtonAction::make('')
+            ButtonAction::make('edit')
+                ->label('Edit')
                 ->icon('heroicon-o-pencil')
                 ->color('secondary')
                 ->url('sdfsd')

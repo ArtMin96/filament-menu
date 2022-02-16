@@ -29,18 +29,20 @@ class FilamentMenu extends Model
 
     public function formatForLocale($locale)
     {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'slug' => $this->slug,
-            'locale' => $locale,
-            'menuItems' => $this->rootMenuItems()
-                ->where('locale', $locale)
-                ->get()
-                ->map(function ($menuItem) {
-                    return $this->formatMenuItem($menuItem);
-                })
-        ];
+        return $this->rootMenuItems()
+            ->where('locale', $locale)->get();
+//        return [
+//            'id' => $this->id,
+//            'name' => $this->name,
+//            'slug' => $this->slug,
+//            'locale' => $locale,
+//            'menuItems' => $this->rootMenuItems()
+//                ->where('locale', $locale)
+//                ->get()
+//                ->map(function ($menuItem) {
+//                    return $this->formatMenuItem($menuItem);
+//                })
+//        ];
     }
 
     public function formatMenuItem($menuItem)

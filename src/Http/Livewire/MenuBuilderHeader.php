@@ -6,16 +6,13 @@ use Livewire\Component;
 
 class MenuBuilderHeader extends Component
 {
-    public string $locale;
-
-    public function mount()
-    {
-        $this->locale = 'en';
-    }
+    public string $localeKey;
 
     public function changeLocale($locale)
     {
+        $this->localeKey = $locale;
         $this->emit('menuItemsByLocale', $locale);
+//        $this->emit('$refresh');
     }
 
     public function render()
