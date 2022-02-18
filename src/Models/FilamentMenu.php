@@ -3,7 +3,7 @@
 namespace Minasyans\FilamentMenu\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Minasyans\FilamentMenu\FilamentMenu as FilamentMenuBuilder;
+use Minasyans\FilamentMenu\FilamentMenuBuilder;
 
 class FilamentMenu extends Model
 {
@@ -31,33 +31,5 @@ class FilamentMenu extends Model
     {
         return $this->rootMenuItems()
             ->where('locale', $locale)->get();
-//        return [
-//            'id' => $this->id,
-//            'name' => $this->name,
-//            'slug' => $this->slug,
-//            'locale' => $locale,
-//            'menuItems' => $this->rootMenuItems()
-//                ->where('locale', $locale)
-//                ->get()
-//                ->map(function ($menuItem) {
-//                    return $this->formatMenuItem($menuItem);
-//                })
-//        ];
-    }
-
-    public function formatMenuItem($menuItem)
-    {
-        return [
-            'id' => $menuItem->id,
-            'name' => $menuItem->name,
-            'type' => $menuItem->type,
-            'value' => $menuItem->customValue,
-            'target' => $menuItem->target,
-            'enabled' => $menuItem->enabled,
-            'data' => $menuItem->customData,
-            'children' => empty($menuItem->children) ? [] : $menuItem->children->map(function ($item) {
-                return $this->formatMenuItem($item);
-            })
-        ];
     }
 }

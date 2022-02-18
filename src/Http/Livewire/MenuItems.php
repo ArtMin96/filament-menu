@@ -6,7 +6,9 @@ use Filament\Facades\Filament;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Livewire\Component;
+use Minasyans\FilamentMenu\FilamentMenuBuilder;
 use Minasyans\FilamentMenu\Models\FilamentMenu;
+use Minasyans\FilamentMenu\Models\FilamentMenuItems;
 
 class MenuItems extends Component
 {
@@ -25,12 +27,27 @@ class MenuItems extends Component
 
     public function updateItemOrder($items)
     {
-        Filament::notify('success', 'Saved');
+        dd($items);
+        $i = 1;
+        foreach ($items as $item) {
+            (new FilamentMenuBuilder)->saveMenuItemWithNewOrder($i, $item);
+            $i++;
+        }
+
+        Filament::notify('success', 'Group inside another group saved');
 //        dd('menu items', $items);
     }
 
-    public function updateGroupOrder($group)
+    public function updateGroupOrder($items)
     {
+        foreach ($items as $item) {
+            $menuItem = FilamentMenuBuilder::getMenuItemClass()::find($item['value']);
+            $menuItem->order = $item['order'];
+            $menuItem->save();
+        }
+
+        $this->emit('menuItemsByLocale', 'en');
+
         Filament::notify('success', 'Group saved');
     }
 

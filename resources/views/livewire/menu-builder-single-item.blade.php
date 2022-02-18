@@ -1,6 +1,11 @@
 <div wire:sortable-group.item="{{ $item->id }}" wire:key="task-{{ $item->id }}">
-    <div class="border list-none rounded-sm px-3 py-3 bg-white">
-        {{ $item->name }}
+    <div class="flex flex-wrap bg-white shadow-sm border rounded-md outline-none hover:bg-gray-300 p-4 mb-3">
+        <div class="w-2/3 flex items-center">
+            <div class="text-lg mr-3">{{ $item->name }}</div>
+
+            @if($item->class === \Minasyans\FilamentMenu\MenuItemTypes\MenuItemStaticURLType::class && $item->value)
+                <div class="ml-3 text-sm text-gray-600">{{ $item->value }}</div>
+            @endif
 
 {{--        <div>--}}
 {{--            @if(!$item->children->isEmpty())--}}
@@ -9,6 +14,7 @@
 {{--                <button wire:sortable.handle>drag item 2</button>--}}
 {{--            @endif--}}
 {{--        </div>--}}
+        </div>
     </div>
 
     @if(!$item->children->isEmpty())

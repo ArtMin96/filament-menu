@@ -1,4 +1,4 @@
-<div class="locale-selection px-6 mr-4 bg-white rounded-md flex justify-between items-center">
+<div class="locale-selection px-6 mr-4 flex justify-between items-center">
     <x-filament::header>
         <x-slot name="heading">
             Menu items

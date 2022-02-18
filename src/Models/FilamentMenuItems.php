@@ -3,7 +3,7 @@
 namespace Minasyans\FilamentMenu\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Minasyans\FilamentMenu\FilamentMenu as FilamentMenuBuilder;
+use Minasyans\FilamentMenu\FilamentMenuBuilder;
 
 class FilamentMenuItems extends Model
 {

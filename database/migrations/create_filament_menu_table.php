@@ -3,20 +3,20 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Minasyans\FilamentMenu\FilamentMenu;
+use Minasyans\FilamentMenu\FilamentMenuBuilder;
 
 return new class extends Migration
 {
     public function up()
     {
-        Schema::create(FilamentMenu::getMenusTableName(), function (Blueprint $table) {
+        Schema::create(FilamentMenuBuilder::getMenusTableName(), function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('slug');
             $table->timestamps();
         });
 
-        Schema::create(FilamentMenu::getMenuItemsTableName(), function (Blueprint $table) {
+        Schema::create(FilamentMenuBuilder::getMenuItemsTableName(), function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('menu_id')->nullable();
             $table->string('name');
@@ -30,13 +30,13 @@ return new class extends Migration
             $table->boolean('enabled')->default(1);
             $table->timestamps();
 
-            $table->foreign('menu_id')->references('id')->on(FilamentMenu::getMenusTableName())->onDelete('cascade');
+            $table->foreign('menu_id')->references('id')->on(FilamentMenuBuilder::getMenusTableName())->onDelete('cascade');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists(FilamentMenu::getMenuItemsTableName());
-        Schema::dropIfExists(FilamentMenu::getMenusTableName());
+        Schema::dropIfExists(FilamentMenuBuilder::getMenuItemsTableName());
+        Schema::dropIfExists(FilamentMenuBuilder::getMenusTableName());
     }
 };
