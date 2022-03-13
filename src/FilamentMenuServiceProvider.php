@@ -11,6 +11,8 @@ use Minasyans\FilamentMenu\Pages\ViewMenu;
 use Minasyans\FilamentMenu\Resources\FilamentMenuResource;
 use Spatie\LaravelPackageTools\Package;
 
+include 'helpers.php';
+
 class FilamentMenuServiceProvider extends PluginServiceProvider
 {
     public static string $name = 'filament-menu';

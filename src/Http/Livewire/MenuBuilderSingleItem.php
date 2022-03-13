@@ -15,13 +15,13 @@ class MenuBuilderSingleItem extends Component
     {
 //        dd($items);
 
-        $i = 1;
-        foreach ($items as $item) {
-            $menuItem = FilamentMenuBuilder::getMenuItemClass()::find($item['value']);
-
-            (new FilamentMenuBuilder)->saveMenuItemWithNewOrder($i, $menuItem);
-            $i++;
-        }
+//        $i = 1;
+//        foreach ($items as $item) {
+//            $menuItem = FilamentMenuBuilder::getMenuItemClass()::find($item['value']);
+//
+//            (new FilamentMenuBuilder)->saveMenuItemWithNewOrder($i, $menuItem);
+//            $i++;
+//        }
 
         Filament::notify('success', 'Item saved!');
 //        dd('single items', $items);

@@ -20,13 +20,9 @@
     @if(!$item->children->isEmpty())
         <ul wire:sortable-group.item-group="{{ $item->id }}" class="pl-12">
             @foreach($item->children as $menuItem)
-                @php
-                    $wireKey3 = time().mt_rand(1000000000, 9999999999).$menuItem->id;
-                @endphp
-
                 <livewire:menu-builder-single-item
                     :item="$menuItem"
-                    wire:key="task-{{ $wireKey3 }}"
+                    wire:key="task-{{ wireKey($menuItem->id) }}"
                 />
             @endforeach
         </ul>
